@@ -1,0 +1,25 @@
+.img-wrapper img{        
+  display: block;    
+  height: 60px;
+  width: auto;
+}
+
+.card-wrapper{
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  height: 100%;    
+}
+
+.card-text{
+  text-align: left;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  h2, p{
+    margin: 0;
+  }
+  h4{
+    margin: 8px 0;
+  }
+}

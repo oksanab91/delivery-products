@@ -1,0 +1,68 @@
+.card {    
+  display: grid;
+  border: solid;
+  height: 484px;
+  padding: 10px;
+
+  input {  
+    border: solid;
+    font-size: 1em;
+    padding-left: .4em;    
+    height: 2em;
+    font-family: 'Open Sans', sans-serif; 
+  }
+
+  input[type=text] {  
+    width: -webkit-fill-available;
+  }
+  
+  input[type=number]{  
+    display: block;
+    max-width: 200px;  
+  }
+  
+  label {
+    display: block;
+    line-height: 20px;  
+  }
+   
+  textarea {
+    font-size: 1em;   
+    border: solid;
+    width: -webkit-fill-available;    
+    font-family: 'Open Sans', sans-serif;
+    padding: .4em;  
+  }
+}
+
+.price-wrapper{
+  display: flex; 
+  align-items: center;
+}
+
+.img-wrapper{
+  padding: 0;
+
+  img{    
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100px;
+    width: auto;
+    min-height: 50px;
+  }
+}
+
+.button-wrapper{    
+  padding: 0;
+
+  button:hover {
+    background-color: #cfd8dc;
+  }
+}
+
+.form-inline{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;    
+}

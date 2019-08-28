@@ -1,0 +1,39 @@
+ <div class="filter-wrapper">
+    <div class="form-inline">
+        <button class="app-button btn-add">Add</button>
+        <div class="search-form">
+          <input #query type="text" (keyup)="onFilter(query.value)" placeholder=" search products"/>
+        </div>
+    
+        <div class="sort form-inline">
+          Sort by&nbsp;
+            <form [formGroup]="sortForm">
+              <select formControlName="sortBy" (change)="onSortChange()">
+                <option *ngFor="let sortBy of sortByList" [ngValue]="sortBy">
+                  {{ sortBy }}
+                </option>
+              </select>
+            </form>
+        </div>
+      </div>
+ </div>  
+
+  <div class="body-grid">
+    <div class="product-card-wrapper" *ngIf="products" [class.collapse-prod]="collapse">
+        <div *ngFor="let product of products" (click)="collapse=true; displayDetails(product);" class="product-card">
+            <app-product-card [product]="product"></app-product-card>
+        </div>
+    </div>
+    
+    <div class="product-details-wrapper" *ngIf="products">
+        <app-product-details-card></app-product-details-card>        
+    </div>
+  </div>
+
+<div class="body-bottom-wrapper">
+    <ul class="pagination">
+        <li [ngClass]="{disabled:currentPage === 1}"><a role="button" (click)="setPage(currentPage - 1)">❮ Prev Page</a></li>
+        <li><label>{{currentPage}} of {{totalPages}}</label></li>
+        <li [ngClass]="{disabled:currentPage === totalPages}"><a role="button" (click)="setPage(currentPage + 1)">Next Page ❯</a></li>
+      </ul>
+</div>

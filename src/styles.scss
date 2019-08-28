@@ -1,0 +1,83 @@
+$btn-add-save-color: #b3d98c;
+$btn-delete-color: #ffb366;
+
+html, body {
+    margin: 0;
+    padding: 0;    
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    min-width: 300px;
+  }
+
+.header{
+  text-align:left;
+  border-bottom: solid;
+  border-top: solid;    
+  padding: 8px 32px;
+  background-color: #99ddff;
+
+  h1{
+    margin: 16px;
+  }
+}
+
+.app-button{
+  border: solid;
+  outline: 0;    
+  padding: .3rem;
+  color: black;
+  text-align: center;
+  cursor: pointer;
+  width: 90px;
+  font-weight: 600;
+  font-size: 1rem;  
+}
+
+.btn-add, .btn-save{
+  background-color: $btn-add-save-color;  
+}
+
+.btn-delete{
+  background-color: $btn-delete-color;
+}
+
+.btn-save button:disabled {
+  background-color: rgb(151, 136, 136);    
+  cursor: auto;
+}
+
+.img-wrapper{    
+  padding: 10px;
+}
+
+.button-wrapper{
+  margin-top: auto;  
+  text-align: right;
+  padding: 10px;
+  
+}
+
+/* Add responsiveness */
+
+@media (max-width: 800px) {  
+  .form-inline {
+    flex-direction: column;
+    align-items: stretch;
+
+    input {
+      margin: 10px 0;
+    }
+  }
+
+  .app-button{
+    padding-bottom: 5px;
+    width: 100%;
+    border-width: 0.05em;
+    margin-bottom: 0.05em;
+  }
+  
+  .header{
+    text-align: center;
+    padding: 0;
+  }
+}
