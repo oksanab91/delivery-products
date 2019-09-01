@@ -1,4 +1,4 @@
- <div class="filter-wrapper">
+ <!-- <div class="filter-wrapper">
     <div class="form-inline">
         <button class="app-button btn-add">Add</button>
         <div class="search-form">
@@ -16,11 +16,13 @@
             </form>
         </div>
       </div>
- </div>  
+ </div>   -->
+
+  <app-product-filter (sort)="sort($event)" (filter)="filter($event)"></app-product-filter>
 
   <div class="body-grid">
-    <div class="product-card-wrapper" *ngIf="products" [class.collapse-prod]="collapse">
-        <div *ngFor="let product of products" (click)="collapse=true; displayDetails(product);" class="product-card">
+    <div class="product-card-wrapper" *ngIf="products">
+        <div *ngFor="let product of products" (click)="displayDetails(product)" class="product-card">
             <app-product-card [product]="product"></app-product-card>
         </div>
     </div>

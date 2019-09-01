@@ -34,7 +34,7 @@ export class ProductDetailsCardComponent implements OnInit {
   buildForm(){
     this.productForm = new FormGroup({
       name: new FormControl(this.product.name, Validators.required),
-      price: new FormControl(this.product.price, [Validators.required, this.priceValidator]),        
+      price: new FormControl(this.product.price.toFixed(2), [Validators.required, this.priceValidator]),        
       description: new FormControl(this.product.description),    
     });
   }

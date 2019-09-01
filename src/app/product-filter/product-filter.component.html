@@ -1,0 +1,19 @@
+<div class="filter-wrapper">
+    <div class="form-inline">
+        <button class="app-button btn-add">Add</button>
+        <div class="search-form">
+          <input #query type="text" (keyup)="onFilter(query.value)" placeholder=" search products"/>
+        </div>
+    
+        <div class="sort form-inline">
+          Sort by&nbsp;
+            <form [formGroup]="sortForm">
+              <select formControlName="sortBy" (change)="onSort()">
+                <option *ngFor="let sortBy of sortByList" [ngValue]="sortBy">
+                  {{ sortBy }}
+                </option>
+              </select>
+            </form>
+        </div>
+      </div>
+ </div>

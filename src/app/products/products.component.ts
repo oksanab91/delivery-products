@@ -17,26 +17,21 @@ export class ProductsComponent implements OnInit {
   filteredProducts: Product[];
   productSelected: Product;
   productSubscription: Subscription;
-
-  sortForm: FormGroup;
-  sortByList = ['Name', 'Price'];  
+ 
   
   productsCount = 0;
   pageSize = 5;
   currentPage = 1;
   totalPages = 0;
 
-  constructor(private productService: ProductService, private router: Router) {
-    this.sortForm = new FormGroup({sortBy: new FormControl(this.sortByList[0])});
+  constructor(private productService: ProductService, private router: Router) {    
   }
 
   ngOnInit() {
      this.productSubscription = this.populateProducts();
   }
 
-  onSortChange(){
-    const sortBy = this.sortForm.get('sortBy').value.toLowerCase();    
-
+  sort(sortBy: string){
     this.filteredProducts.sort((item1, item2) => {
       if (isNaN(Number(item1[sortBy]))) {
         return item1[sortBy].localeCompare(item2[sortBy]);
@@ -46,7 +41,7 @@ export class ProductsComponent implements OnInit {
     
     this.setPage(1);    
   }
-  onFilter(query){
+  filter(query: string){    
     this.filteredProducts = (query) ? 
       this.productsAll.filter(p => p.name.toLowerCase().includes(query.toLowerCase()) || 
       p.description.toLowerCase().includes(query.toLowerCase())) :
@@ -56,7 +51,7 @@ export class ProductsComponent implements OnInit {
     this.totalPages = this.productsCount <= this.pageSize ? 1 : Math.ceil(this.productsCount/this.pageSize);
     this.setPage(1);
 
-    this.onSortChange();
+    this.sort('name');
   }
 
   setPage(page: number){
