@@ -17,7 +17,7 @@ export class ProductFilterComponent {
     this.sortForm = new FormGroup({sortBy: new FormControl(this.sortByList[0])});
   }
 
-  onFilter(query) {    
+  onFilter(query: string) {    
     this.filter.emit(query);    
   }
 

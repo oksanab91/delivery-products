@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { NavigationExtras, Router } from '@angular/router';
 import { Product } from '../models/product';
 import { ProductService } from '../product.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Paginator } from '../models/paginator';
 
 @Component({
   selector: 'app-products',
@@ -18,11 +18,8 @@ export class ProductsComponent implements OnInit {
   productSelected: Product;
   productSubscription: Subscription;
  
-  
-  productsCount = 0;
-  pageSize = 5;
-  currentPage = 1;
-  totalPages = 0;
+  paginator: Paginator;
+  productsCount = 0;  
 
   constructor(private productService: ProductService, private router: Router) {    
   }
@@ -37,10 +34,11 @@ export class ProductsComponent implements OnInit {
         return item1[sortBy].localeCompare(item2[sortBy]);
       }
       return item1[sortBy] - item2[sortBy];
-    })
-    
-    this.setPage(1);    
+    })   
+
+    this.setPage(this.paginator);    
   }
+
   filter(query: string){    
     this.filteredProducts = (query) ? 
       this.productsAll.filter(p => p.name.toLowerCase().includes(query.toLowerCase()) || 
@@ -48,18 +46,12 @@ export class ProductsComponent implements OnInit {
       this.productsAll;
     
     this.productsCount = this.filteredProducts.length;    
-    this.totalPages = this.productsCount <= this.pageSize ? 1 : Math.ceil(this.productsCount/this.pageSize);
-    this.setPage(1);
-
-    this.sort('name');
+       
+    this.setPage(this.paginator)
   }
 
-  setPage(page: number){
-    this.currentPage = page;
-    const start = (this.currentPage - 1) * this.pageSize;
-    const end = page === this.totalPages ? this.productsCount : start + this.pageSize;
-
-    this.products = this.filteredProducts.slice(start, end);    
+  setPage(page: Paginator){ 
+    this.products = this.filteredProducts.slice(page.start, page.end);    
   }
 
   displayDetails(product: Product) {    
@@ -72,6 +64,16 @@ export class ProductsComponent implements OnInit {
     this.router.navigate(['products/details', product.id], navigationExtras);
   }
 
+  initPaginator(){
+    this.paginator = new Paginator();     
+    this.paginator.pageSize = 5; 
+    this.paginator.currentPage = 1;
+    this.paginator.start = 0;
+    this.paginator.itemsCount = this.productsCount;
+    this.paginator.end = (this.productsCount < this.paginator.pageSize && this.productsCount > 0) ?
+      this.productsCount : this.paginator.pageSize;    
+  }
+
   populateProducts(): Subscription{
     return this.productService.getAll()
     .pipe(
@@ -79,10 +81,10 @@ export class ProductsComponent implements OnInit {
         {          
           this.productsAll = products;
           this.filteredProducts = products;
-
           this.productsCount = this.productsAll.length;
-          this.totalPages = this.productsCount <= this.pageSize ? 1 : Math.ceil(this.productsCount/this.pageSize);
-          this.setPage(1);
+          
+          this.initPaginator();
+          this.setPage(this.paginator);
         }        
         )
     ).subscribe();  
