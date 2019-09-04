@@ -1,12 +1,14 @@
-<div class="card-wrapper">        
-    <div class="img-wrapper">
-        <img src="{{product.thumbnailUrl}}" alt="Image">
-    </div>          
-
-    <div class="card-text">
-        <h4>{{product.name}}</h4>              
-        <p>{{product.description}}</p>
-    </div>
+<div class="card">
+    <div class="card-description">
+        <div class="img-wrapper">
+            <img class="image" src="{{product.thumbnailUrl}}" alt="Image">
+        </div>          
+    
+        <div class="card-text">
+            <h4>{{product.name}}</h4>              
+            <p>{{product.description}}</p>
+        </div>
+    </div>    
     
     <div class="button-wrapper">
         <button class="app-button btn-delete">Delete</button>

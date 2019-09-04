@@ -1,29 +1,28 @@
-
 <ng-container *ngIf="product">
-  <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="card">
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="details-card">
     <div class="img-wrapper"> 
-      <img src="{{product.url}}" alt="Image">
+      <img class="image" src="{{product.url}}" alt="Image">
     </div>
       
     <label>
       Name:
-      <input type="text" formControlName="name" required class="form-inline">
+      <input class="input-basic" type="text" formControlName="name" required>
     </label>
     <span *ngIf="(name.dirty || name.touched) && name.invalid && name.errors">
       Name is required.
     </span>                        
-          
+    
     <label>
       Description:
-      <textarea name="description" formControlName="description"
-        id="description" class="input-descript" 
+      <textarea class="textarea-descript" name="description" formControlName="description"
+        id="description" 
         rows="5" cols="30"></textarea>
     </label>
      
     <label>
       Price                    
       <div class="price-wrapper">
-        <input type="number" formControlName="price" required>&nbsp;$
+        <input class="input-basic" type="number" formControlName="price" required>&nbsp;$
       </div>  
     </label>
     <span *ngIf="(price.dirty || price.touched) && price.invalid && price.errors">

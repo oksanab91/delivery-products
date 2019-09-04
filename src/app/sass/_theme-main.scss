@@ -1,0 +1,90 @@
+$theme-colors: (
+  'primary': (
+    'base':#80aaff,
+    'light': #e4efff
+  ),
+  'success': (
+    'base': #b3d98c,
+    'light': #cce6b3
+  ),
+  'danger': (
+    'base': #ff7733,  
+    'light': #ffbb99
+  ),
+  'background': (
+    'base': #f8f5f5,
+    'light': #fff,
+    'dark': #ddd
+  ),  
+  'font-color': (
+    'base': #000
+  )  
+);
+
+$theme-font: (
+  'family': ('Open Sans', sans-serif),
+  'size': 18px
+);
+
+$theme-basic-padding: 10px;
+$theme-basic-margin: 10px;
+$theme-line-height: 20px;
+
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin theme-border-font {
+  border: solid;
+  border-color: theme-color(font-color);
+  border-width: 0.2rem;
+  font-size: 1rem;
+  font-family: theme-font();
+  color: theme-color(font-color, base);
+}
+
+@function theme-color($key: 'primary', $variant: 'base') {
+  $map: map-get($theme-colors, $key);
+  @return map-get($map, $variant);
+};
+
+@function theme-font($key: 'family') {
+  @return map-get($theme-font, $key);  
+};
+
+.button-basic{
+  @include theme-border-font;    
+    outline: 0;    
+    padding: .3rem;    
+    text-align: center;
+    cursor: pointer;
+    width: 5.6rem;
+    font-weight: 600;
+    min-width: 4.4rem;  
+
+    &:hover, &:disabled {
+      color: lighten(theme-color(font-color, base), 40%);      
+    }
+    &:hover {      
+      cursor: pointer;
+    }
+    &:disabled {      
+      cursor: auto;
+    }
+  }
+
+.input-basic{
+  @include theme-border-font;
+  
+  padding-left: .4rem;    
+  height: 2rem;  
+}
+
+.card-basic {
+  height: 100%;
+  display: grid;
+}

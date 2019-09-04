@@ -1,16 +1,7 @@
-.card {    
-  display: grid;
-  border: solid;
-  height: 484px;
-  padding: 10px;
+@import '../sass/theme-main';
 
-  input {  
-    border: solid;
-    font-size: 1em;
-    padding-left: .4em;    
-    height: 2em;
-    font-family: 'Open Sans', sans-serif; 
-  }
+.details-card {
+  @extend .card-basic;  
 
   input[type=text] {  
     width: -webkit-fill-available;
@@ -23,42 +14,39 @@
   
   label {
     display: block;
-    line-height: 20px;  
+    line-height: $theme-line-height;  
   }
-   
-  textarea {
-    font-size: 1em;   
-    border: solid;
-    width: -webkit-fill-available;    
-    font-family: 'Open Sans', sans-serif;
-    padding: .4em;
-    display:flex; 
+  
+  .textarea-descript {
+    @include theme-border-font;
+  
+    width: -webkit-fill-available;
+    padding: .4rem;
+    display: flex; 
   }
-}
 
-.price-wrapper{
-  display: flex; 
-  align-items: center;
-}
-
-.img-wrapper{
-  padding: 0;
-
-  img{    
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 100px;
-    width: auto;
-    min-height: 50px;
+  .price-wrapper{
+    display: flex; 
+    align-items: center;
   }
-}
+  
+  .img-wrapper {        
+    display: inline;
 
-.button-wrapper{    
-  padding: 0;
+    .image{
+      @include theme-border-font;
+      
+      display: inline-block;
+      margin-left: auto;
+      margin-right: auto;
+      height: 100px;
+      width: auto;
+      min-height: 50px;
+    }
+  }
 
-  button:hover {
-    background-color: #cfd8dc;
+  .button-wrapper{    
+    padding: 0;  
   }
 }
 

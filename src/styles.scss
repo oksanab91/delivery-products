@@ -1,83 +1,93 @@
-$btn-add-save-color: #b3d98c;
-$btn-delete-color: #ff7733;
+@import "app/sass/theme-main";
 
 html, body {
     margin: 0;
     padding: 0;    
-    font-family: 'Open Sans', sans-serif;
-    font-size: 18px;
+    font-family: theme-font();
+    font-size: theme-font(size);
     min-width: 300px;
   }
 
 .header{
+  @include theme-border-font;
+
   text-align:left;
-  border-bottom: solid;
-  border-top: solid;    
+  border-right: 0;
+  border-left: 0;  
   padding: 0 32px;
-  background-color: #80aaff;
+  background-color: theme-color();
 
   h1{
     margin: 16px;
   }
 }
 
-.app-button{
-  border: solid;
-  outline: 0;    
-  padding: .3rem;
-  color: black;
-  text-align: center;
-  cursor: pointer;
-  width: 90px;
-  font-weight: 600;
-  font-size: 1rem;  
-}
-
 .btn-add, .btn-save{
-  background-color: $btn-add-save-color;  
+  @extend .button-basic;
+  background-color: theme-color(success, base);
+
+  &:hover {
+    background-color: theme-color(success, light);    
+  }
+
+  &:hover, &:disabled {
+    background-color: lighten(theme-color(success, base), 20%);
+  }
 }
 
 .btn-delete{
-  background-color: $btn-delete-color;
+  @extend .button-basic;
+  background-color: theme-color(danger, base);
+  
+  &:hover {
+    background-color: lighten(theme-color(danger, base), 20%);    
+  }
 }
 
-.btn-save button:disabled {
-  background-color: rgb(151, 136, 136);    
-  cursor: auto;
+
+.product-card {
+  border: solid;
+  border-color: theme-color(font-color);
+  border-width: 0.2rem;
+  margin-bottom: 10px;
+  margin-right: 10px;   
 }
 
-.img-wrapper{    
-  padding: 10px;
+.img-wrapper {        
+  display: flex;  
+  padding: 0;  
 }
 
 .button-wrapper{
   margin-top: auto;  
-  text-align: right;
-  padding: 10px;
-  
+  text-align: right; 
 }
 
 /* Add responsiveness */
 
-@media (max-width: 800px) {  
-  .form-inline {
-    flex-direction: column;
-    align-items: stretch;
+@media screen and (max-width: 800px) {
+  body{
+    margin: 0;
 
-    input {
-      margin: 10px 0;
-    }
-  }
-
-  .app-button{
-    padding-bottom: 5px;
-    width: 100%;
-    border-width: 0.05em;
-    margin-bottom: 0.05em;
-  }
+    .form-inline {
+      flex-direction: column;
+      align-items: stretch;
   
-  .header{
-    text-align: center;
-    padding: 0;
-  }
+      input {
+        margin: 10px 0;
+      }
+    }
+
+    .app-button{
+      padding-bottom: 5px;
+      width: 100%;
+      border-width: 0.05em;
+      margin-bottom: 0.05em;
+    }
+    
+    .header{
+      text-align: center;
+      padding: 0;
+    }
+  }  
 }

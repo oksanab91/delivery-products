@@ -1,43 +1,39 @@
+@import  '../sass/theme-main';
 body{
   clear:both;
 }
 
-.body-grid{
-  height: 500px;
+.body-grid{  
   display: grid;
   grid-template-columns: 60% 40%;
   padding: 0 40px;
 }
 
-.product-card {
-  border: solid; 
-  margin: 8px;
-  height: 84px;
-}
-
 .product-card-wrapper{
   display: grid;
   grid-template-columns: 1fr;
-  height: fit-content;
+  display: table-row-group; 
 }
 
 .product-details-wrapper{
+  @include theme-border-font;
+  
   display: grid;
   grid-template-columns: 1fr;
-  margin: 8px;
-  height: 500px;   
+  padding: $theme-basic-padding;
+  margin-bottom: $theme-basic-padding;   
 }
 
 /* Add responsiveness */
 
-@media (max-width: 800px) {
+@media screen and (max-width: 800px) {
   .body-grid{    
     height: fit-content;
     display: grid;
     grid-template-columns: 1fr;
     padding: 0;
     margin: 0;
-    border-width: 0.1 rem;
+    border-width: 0.1rem;
   }
 
   .product-details-wrapper{
@@ -46,9 +42,8 @@ body{
   }
 
   .product-card {
-    margin: 0.1rem;
-    height: 100px;
-    border-width: 0.05em;
+    margin: 0.1rem;    
+    border-width: 0.05rem;
   } 
   
 }

@@ -1,3 +1,4 @@
+<main>
 <app-product-filter (sort)="sort($event)" (filter)="filter($event)"></app-product-filter>
 
 <div class="body-grid">
@@ -7,9 +8,12 @@
       </div>
   </div>
   
-  <div class="product-details-wrapper" *ngIf="products">
+  <div class="product-details-wrapper" *ngIf="productSelected">
       <app-product-details-card></app-product-details-card>        
   </div>
 </div>
+</main>
 
-<app-pagination *ngIf="paginator" [paginator]="paginator" (setPage)="setPage($event)"></app-pagination>
+<footer>
+    <app-pagination *ngIf="paginator" [paginator]="paginator" (setPage)="setPage($event)"></app-pagination>
+</footer>

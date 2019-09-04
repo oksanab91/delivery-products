@@ -60,7 +60,7 @@ export class ProductsComponent implements OnInit {
         product: product
       }
     };
-    
+    this.productSelected = product;
     this.router.navigate(['products/details', product.id], navigationExtras);
   }
 

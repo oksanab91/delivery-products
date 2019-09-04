@@ -6,7 +6,7 @@
         </div>
     
         <div class="sort form-inline">
-          Sort by&nbsp;
+          <label>Sort by</label>
             <form [formGroup]="sortForm">
               <select formControlName="sortBy" (change)="onSort()">
                 <option *ngFor="let sortBy of sortByList" [ngValue]="sortBy">

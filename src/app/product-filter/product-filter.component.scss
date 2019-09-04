@@ -1,7 +1,9 @@
+@import '../sass/theme-main';
+
 .filter-wrapper{
     display: grid;
     grid-template-columns: 60% 40%;
-    padding: 16px 48px 8px 48px;  
+    padding: 8px 40px 8px 40px;  
 }
 
 .form-inline{
@@ -17,9 +19,12 @@
   .sort{
     margin-left: auto;
     padding-right: 8px;
-  
+    label {
+      padding: 0 10px;
+    }
+
     form{
-      border: solid;
+      @include theme-border-font;      
     }
   
     select{
@@ -29,9 +34,10 @@
   }
   
   .search-form{
-    border: solid;
+    @include theme-border-font;
+    
     border-radius: 15px;
-    margin-left: 10px;
+    margin-left: $theme-basic-margin;
   
     input{
       border-radius: 15px;
@@ -48,8 +54,7 @@
     }
   }
 
-
-  @media screen and (max-width: 1024px) {  
+  @media screen and (max-width: 1200px) {  
     .form-inline {
       flex-flow: unset;
       select {
@@ -87,8 +92,7 @@
     }
   
     .search-form {
-      margin: 0;
-      width:100%;
+      margin: 0;      
       padding-bottom: 5px;
       border-width: 0.05em;
     }
