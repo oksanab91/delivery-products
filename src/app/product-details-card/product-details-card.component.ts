@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../models/product';
-import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
-import { map, filter } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-details-card',
@@ -11,24 +12,42 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./product-details-card.component.scss']
 })
 export class ProductDetailsCardComponent implements OnInit {  
-  product: Product;
+  product: Product;  
+  productId: number;
   productForm: FormGroup;
-
+  
   message = '';
   messageId = '';
   messageShow = false;  
   
-  constructor(public router: Router, public activatedRoute: ActivatedRoute) {
-  }  
+  constructor(private router: Router, 
+              private route: ActivatedRoute, 
+              private service: ProductService) {
+  } 
   
   ngOnInit() {
-    this.router.events.pipe(
-      filter(e => e instanceof NavigationStart),
-      map(() => this.router.getCurrentNavigation().extras.state.product)
-    ).subscribe(prod => 
-      {this.product = prod;
-        this.buildForm();
-      })
+    this.route.firstChild.params.subscribe(params => {
+      this.productId = +params['id'];
+      this.getProduct();
+    });
+  }
+
+  getProduct(){
+    return this.service.getAll().pipe(
+      map(prod =>
+        {          
+          let products = prod;
+          
+          products.forEach((p: Product) => {
+            if (p.id == this.productId) {
+              this.product = p;
+            }
+          });
+
+          this.buildForm();
+        }        
+      )
+    ).subscribe(); 
   }
 
   buildForm(){

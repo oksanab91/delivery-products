@@ -22,13 +22,21 @@ $theme-colors: (
 );
 
 $theme-font: (
-  'family': ('Open Sans', sans-serif),
-  'size': 18px
+  'base':(
+    'family': ('Open Sans', sans-serif),
+    'size': 18px
+    ),
+  'mobile':(
+    'family': ('Open Sans', sans-serif),
+    'size': 16px
+  )
 );
 
-$theme-basic-padding: 10px;
-$theme-basic-margin: 10px;
-$theme-line-height: 20px;
+$theme-basic-padding: 0.6rem;
+$theme-basic-margin: 0.6rem;
+$theme-line-height: 1.1rem;
+$theme-border-width: 0.2rem;
+$theme-border-width-mobile: 0.1rem;
 
 @mixin clearfix {
   &::after {
@@ -41,7 +49,7 @@ $theme-line-height: 20px;
 @mixin theme-border-font {
   border: solid;
   border-color: theme-color(font-color);
-  border-width: 0.2rem;
+  border-width: $theme-border-width;
   font-size: 1rem;
   font-family: theme-font();
   color: theme-color(font-color, base);
@@ -52,8 +60,9 @@ $theme-line-height: 20px;
   @return map-get($map, $variant);
 };
 
-@function theme-font($key: 'family') {
-  @return map-get($theme-font, $key);  
+@function theme-font($key: 'base', $variant: 'family') {
+  $map: map-get($theme-font, $key);
+  @return map-get($map, $variant);  
 };
 
 .button-basic{

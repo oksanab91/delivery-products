@@ -12,7 +12,7 @@ $gutter-horizontal: map-get($theme-grid, gutter-horizontal);
   margin: 0 auto;
 
   &:not(:last-child){
-    margin-bottom: map-get($theme-grid, gutter-vertical); //16px;
+    margin-bottom: map-get($theme-grid, gutter-vertical);
   }
 
   @include clearfix;
@@ -22,7 +22,7 @@ $gutter-horizontal: map-get($theme-grid, gutter-horizontal);
     float: left;
 
     &:not(:last-child){
-      margin-right: $gutter-horizontal; //16px;
+      margin-right: $gutter-horizontal;
     }
   }
   .col-1-of-2{

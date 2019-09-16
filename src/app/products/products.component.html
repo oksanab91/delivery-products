@@ -3,12 +3,15 @@
 
 <div class="body-grid">
   <div class="product-card-wrapper" *ngIf="products">
-      <div *ngFor="let product of products" (click)="displayDetails(product)" class="product-card">
-          <app-product-card [product]="product"></app-product-card>
+      <div *ngFor="let product of products" class="product-card" [class.selected]="product.id === selectedId" 
+        (click)="selectProduct(product.id)">
+            <a [routerLink]="['details', product.id]">                    
+                <app-product-card [product]="product"></app-product-card>
+            </a>
       </div>
   </div>
   
-  <div class="product-details-wrapper" *ngIf="productSelected">
+  <div class="product-details-wrapper" *ngIf="selectedId>0">    
       <app-product-details-card></app-product-details-card>        
   </div>
 </div>

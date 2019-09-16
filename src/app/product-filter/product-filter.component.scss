@@ -3,7 +3,7 @@
 .filter-wrapper{
     display: grid;
     grid-template-columns: 60% 40%;
-    padding: 8px 40px 8px 40px;  
+    padding: 0.5rem 2rem;  
 }
 
 .form-inline{
@@ -13,14 +13,14 @@
 }
 
 .filter{
-    padding: 16px 16px 8px 16px;
+    padding: 0.9rem 0.9rem 0.5rem 0.9rem;
   }
   
   .sort{
     margin-left: auto;
-    padding-right: 8px;
+    padding-right: 0.5rem;
     label {
-      padding: 0 10px;
+      padding: 0 0.6rem 0 0
     }
 
     form{
@@ -28,7 +28,7 @@
     }
   
     select{
-      font-size: 1em;
+      font-size: 1rem;
       width: 216px;  
     }
   }
@@ -36,21 +36,18 @@
   .search-form{
     @include theme-border-font;
     
-    border-radius: 15px;
+    border-radius: 0.8rem;
     margin-left: $theme-basic-margin;
+    padding: 0.2rem;
   
-    input{
-      border-radius: 15px;
-      font-size: 1em;
-      bottom: 0;
-      box-sizing: border-box;
+    input{      
+      font-size: 1rem;
+      bottom: 0;      
       left: 0;
       margin: 0;  
-      padding-inline-start: 20px;  
+      padding-inline-start: 1.1rem;  
       width: 100%;
-      border-style: solid;
-      border-color: transparent;
-      margin: 2px;
+      border-style: none;      
     }
   }
 
@@ -58,10 +55,10 @@
     .form-inline {
       flex-flow: unset;
       select {
-        width: 9em;
+        width: 9rem;
       }
       .sort{
-        padding-left: 0.5em;
+        padding-left: 0.5rem;
       }
     }  
   }
@@ -83,18 +80,17 @@
       width: 100%;
       
       input {
-        margin: 10px 0;
+        margin: 0.3rem 0;
       }
   
       .sort{
-        padding-left: 0;
+        padding: 0;
       }
     }
   
     .search-form {
-      margin: 0;      
-      padding-bottom: 5px;
-      border-width: 0.05em;
+      margin: 0;
+      border-width: $theme-border-width-mobile;
     }
   
     .sortForm {
@@ -103,15 +99,15 @@
   
     .sort {
       form{
-        border-width: 0.05em;
+        border-width: $theme-border-width-mobile;
       }
       select{
         width: -webkit-fill-available;
-        padding-bottom: 5px;
+        padding-bottom: 0.3rem;
       }
   
       .form-inline{
-        border-width: 0.05em;
+        border-width: $theme-border-width-mobile;
       }
     }  
     

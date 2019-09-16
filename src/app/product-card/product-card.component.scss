@@ -14,7 +14,7 @@
 
 .card{
   @extend .card-basic;  
-  grid-template-columns: 6fr 1fr;
+  grid-template-columns: 6fr 1fr;  
 }
 
 .card-description {
@@ -22,13 +22,14 @@
   padding: $theme-basic-padding;
 
   .card-text{
+    color: theme-color(font-color, base);
     display: inline-block;
     text-align: left;
-    padding-left: $theme-basic-padding;
+    padding-left: 1rem;
     position: relative;
     overflow-x: hidden;
     overflow-y: hidden;
-    height: 80px;
+    height: 4rem;
   
     h2, p{
       margin: 0;
@@ -37,5 +38,11 @@
       margin: 0;
       padding-bottom: 5px;
     }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .image{
+    border-width: $theme-border-width-mobile;
   }
 }

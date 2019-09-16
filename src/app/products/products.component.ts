@@ -14,9 +14,9 @@ import { Paginator } from '../models/paginator';
 export class ProductsComponent implements OnInit {  
   productsAll: Product[];
   products: Product[];
-  filteredProducts: Product[];
-  productSelected: Product;
+  filteredProducts: Product[];  
   productSubscription: Subscription;
+  selectedId: number;
  
   paginator: Paginator;
   productsCount = 0;  
@@ -51,17 +51,12 @@ export class ProductsComponent implements OnInit {
   }
 
   setPage(page: Paginator){ 
-    this.products = this.filteredProducts.slice(page.start, page.end);    
+    this.products = this.filteredProducts.slice(page.start, page.end); 
+    this.selectedId = 0;   
   }
 
-  displayDetails(product: Product) {    
-    let navigationExtras: NavigationExtras = {
-      state: {
-        product: product
-      }
-    };
-    this.productSelected = product;
-    this.router.navigate(['products/details', product.id], navigationExtras);
+  selectProduct(id: number){
+    this.selectedId = id;
   }
 
   initPaginator(){
