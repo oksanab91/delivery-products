@@ -10,6 +10,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductDetailsCardComponent } from './product-details-card/product-details-card.component';
 import { ProductFilterComponent } from './product-filter/product-filter.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { PaginationComponent } from './pagination/pagination.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,

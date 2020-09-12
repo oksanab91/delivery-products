@@ -43,6 +43,9 @@ export class ProductFilterComponent {
 
   search(filter: string): void {    
     this.searchName.next(filter)
+    setTimeout(() => {      
+      this.router.navigateByUrl(`/products`)
+    })
   }
 
   onSort() {

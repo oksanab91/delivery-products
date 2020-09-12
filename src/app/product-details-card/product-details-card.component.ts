@@ -6,12 +6,15 @@ import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { ProductService } from '../product.service';
+import { slideFormInOutAnimation } from '../app-animations/slide.animation';
 
 @Component({
   selector: 'app-product-details-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './product-details-card.component.html',
-  styleUrls: ['./product-details-card.component.scss']
+  styleUrls: ['./product-details-card.component.scss'],
+  animations: [slideFormInOutAnimation],
+  host: { '[@slideFormInOutAnimation]': ''}
 })
 export class ProductDetailsCardComponent implements OnInit, OnDestroy {  
   product: Product;

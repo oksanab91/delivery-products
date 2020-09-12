@@ -1,15 +1,16 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable, forkJoin } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Product } from '../models/product';
 import { ProductService, productsOnPageSelect$ } from '../product.service';
 import { Router } from '@angular/router';
+import { slideListInOutAnimation } from '../app-animations/slide.animation';
 
 @Component({
   selector: 'app-products',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  styleUrls: ['./products.component.scss'],
+  animations: [slideListInOutAnimation]
 })
 export class ProductsComponent implements OnInit {  
   values$: Observable<any>
@@ -31,16 +32,7 @@ export class ProductsComponent implements OnInit {
   populateProducts() {
     this.values$ = forkJoin(
       this.productService.getAll()
-    ).pipe(
-      map(([listState]) => {        
-        if(listState.productsOnPage.length > 0) {
-          setTimeout(() => {      
-            this.router.navigateByUrl(`/products/details/${listState.productsOnPage[0].id}`)
-          })
-        }
-        return { listState }
-      })
-    );
+    )
   }
 
   trackByFn(index, item) {

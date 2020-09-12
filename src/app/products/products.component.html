@@ -3,7 +3,7 @@
 
     <ng-container *ngIf="values$ | async as values">
         <div class="body-grid">
-            <div class="product-card-wrapper">
+            <div class="product-card-wrapper" [@slideListInOutAnimation]="(productsOnPage$ | async)?.length">
                 <div *ngFor="let product of (productsOnPage$ | async) as products; let i = index; trackBy: trackByFn"
                     (click)="selectProduct(i)" class="product-card">                                            
                         <app-product-card [product]="product" [selected]="selectedInd === i"></app-product-card>                        

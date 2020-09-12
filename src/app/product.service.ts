@@ -58,8 +58,8 @@ export class ProductService {
     return this.api.getAll().pipe(map(prod => {
       this.setState({...this.state, 
         products: [...prod], 
-        filtered: [...prod], 
-        current: prod.length>0 ? {...prod[0]} : null,        
+        filtered: [...prod],
+        current: null,
         filled: true})
       
       localStorage.setItem('products', JSON.stringify(this.state))
@@ -78,8 +78,9 @@ export class ProductService {
       val.description.toLowerCase().includes(filter.toLowerCase()))   
 
     this.setState({...this.state,  
-      filtered: [...filtered], 
-      current: filtered.length>0 ? {...filtered[0]} : null})  
+      filtered: [...filtered],
+      current: null
+    })  
     
     localStorage.setItem('products', JSON.stringify(this.state))
 
@@ -118,8 +119,9 @@ export class ProductService {
     })
     
     this.setState({...this.state, 
-      filtered: [...sorted], 
-      current: sorted.length>0 ? {...sorted[0]} : null})
+      filtered: [...sorted],
+      current: null
+    })
 
     localStorage.setItem('products', JSON.stringify(this.state))
 
@@ -136,7 +138,7 @@ export class ProductService {
     this.setState({...this.state, 
       products: [...products], 
       filtered: [...products],
-      current: products.length>0 ? {...products[0]} : null      
+      current: null
     })
     
     localStorage.setItem('products', JSON.stringify(this.state))
@@ -148,7 +150,6 @@ export class ProductService {
 
   update(product: Product) {
     let products = this.getLocaStorage()
-    let id = product.id > 0 ? product.id : products[products.length-1].id+1
     const ind = products.findIndex(val => val.id === product.id)
     
     if(ind >= 0) {      
