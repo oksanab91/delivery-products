@@ -7,33 +7,19 @@ body{
   display: grid;
   grid-template-columns: 60% 40%;
   padding: 0 2rem;
+  background-color: theme-color(background, base);
 }
 
 .product-card-wrapper{
+  z-index: 1000;
   display: grid;
   grid-template-columns: 1fr;
   display: table-row-group;
-
-  .product-card  {
-    a {  
-      text-decoration: none;      
-    }
-    &.selected{
-      background-color: theme-color(primary, base); 
-    }     
+  padding-right: 0.5rem;
   }
-}
-
-
-
 
 .product-details-wrapper{
-  @include theme-border-font;
-  
-  display: grid;
-  grid-template-columns: 1fr;
-  padding: $theme-basic-padding;
-  margin-bottom: $theme-basic-padding;   
+  background-color: theme-color(background, base);
 }
 
 
@@ -49,14 +35,12 @@ body{
     border-width: $theme-border-width-mobile;
   }
 
-  .product-details-wrapper{
-    height: 0;
-    visibility: collapse;
+  .product-card-wrapper{
+    padding: 0;
   }
 
   .product-card {
-    margin: 0.1rem;    
-    border-width: $theme-border-width-mobile;
+    margin: 0.1rem;
   } 
   
 }

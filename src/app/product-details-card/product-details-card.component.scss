@@ -14,11 +14,14 @@
   
   label {
     display: block;
-    line-height: $theme-line-height;  
+    line-height: $theme-line-height;
+    padding-top: $theme-basic-padding;
   }
   
   .textarea-descript {
-    @include theme-border-font;
+    @include input-border;
+    font-family: theme-font();
+    color: theme-color(font-color, base);
   
     width: -webkit-fill-available;
     padding: .4rem;
@@ -46,7 +49,8 @@
   }
 
   .button-wrapper{    
-    padding: 0;  
+    padding: 0;
+    padding-top: $theme-basic-padding;  
   }
 }
 

@@ -5,10 +5,11 @@
 
     .pagination {
       display: inline-block;
-      line-height: $theme-line-height;    
-      .disabled {
-        pointer-events:none;
-        opacity:0.6;
+      line-height: $theme-line-height;
+      padding-inline-start: 0;
+
+      label {
+        cursor: default;
       }
 
       a {
@@ -16,13 +17,14 @@
         color: theme-color(font-color, base);    
         padding: 0.4rem 1rem;
         text-decoration: none;
+        background-color: theme-color(background, base);
         transition: background-color .3s;
         
         .active {
           background-color: theme-color();
           color: white;
           border: 1px solid theme-color();
-        }  
+        }         
       }
     
       li{
@@ -30,23 +32,15 @@
       }
 
       .disabled {
-        pointer-events:none;
+        background-color: theme-color(background, base);
+        color: theme-color(font-color, base);
+        box-shadow: none;
+        cursor: auto;
         opacity:0.6;
-      }
-    }
-}
 
-@media screen and (max-width: 800px) { 
-  .pagination-wrapper{      
-      padding: 0;
-
-      .pagination {    
-        padding: 0;
-
-        li{
-          display:  block;
+        a{
+          box-shadow: none;
         }
       }
-  }
-}
-    
+    }
+}    

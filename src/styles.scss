@@ -1,20 +1,22 @@
 @import "app/sass/theme-main";
 
 html, body {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;    
-    font-family: theme-font();
-    font-size: theme-font(base, size);
-    min-width: 300px;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;    
+  font-family: theme-font();
+  font-size: theme-font(base, size);
+  min-width: 300px;
+  background-color: theme-color(background, base);
+}
 
 *, *:before, *:after {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 .header{
   @include theme-border-font;
+  color: theme-color(font-color, light);
 
   text-align:left;
   border-right: 0;
@@ -22,50 +24,9 @@ html, body {
   padding: 0 2rem;
   background-color: theme-color();
 
-  h1{
-    margin: 1rem 0;
+  h2{
+    margin: 2rem 0;
   }
-}
-
-.btn-add, .btn-save{
-  @extend .button-basic;
-  background-color: theme-color(success, base);
-
-  &:hover {
-    background-color: theme-color(success, light);    
-  }
-
-  &:hover, &:disabled {
-    background-color: lighten(theme-color(success, base), 20%);
-  }
-}
-
-.btn-delete{
-  @extend .button-basic;
-  background-color: theme-color(danger, base);
-  
-  &:hover {
-    background-color: lighten(theme-color(danger, base), 20%);    
-  }
-}
-
-
-.product-card {
-  border: solid;
-  border-color: theme-color(font-color);
-  border-width: 0.2rem;
-  margin-bottom: 0.6rem;
-  margin-right: 0.6rem;   
-}
-
-.img-wrapper {        
-  display: flex;  
-  padding: 0;  
-}
-
-.button-wrapper{
-  margin-top: auto;  
-  text-align: right; 
 }
 
 /* Add responsiveness */
@@ -87,13 +48,6 @@ html, body {
       }
     }
 
-    .app-button{
-      padding-bottom: 5px;
-      width: 100%;
-      border-width: $theme-border-width-mobile;
-      margin-bottom: 0.05rem;
-    }
-    
     .header{
       text-align: center;
       padding: 0;

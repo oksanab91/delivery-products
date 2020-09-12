@@ -1,22 +1,22 @@
 <main>
-<app-product-filter (sort)="sort($event)" (filter)="filter($event)"></app-product-filter>
+    <app-product-filter></app-product-filter>
 
-<div class="body-grid">
-  <div class="product-card-wrapper" *ngIf="products">
-      <div *ngFor="let product of products" class="product-card" [class.selected]="product.id === selectedId" 
-        (click)="selectProduct(product.id)">
-            <a [routerLink]="['details', product.id]">                    
-                <app-product-card [product]="product"></app-product-card>
-            </a>
-      </div>
-  </div>
-  
-  <div class="product-details-wrapper" *ngIf="selectedId>0">    
-      <app-product-details-card></app-product-details-card>        
-  </div>
-</div>
+    <ng-container *ngIf="values$ | async as values">
+        <div class="body-grid">
+            <div class="product-card-wrapper">
+                <div *ngFor="let product of (productsOnPage$ | async) as products; let i = index; trackBy: trackByFn"
+                    (click)="selectProduct(i)" class="product-card">                                            
+                        <app-product-card [product]="product" [selected]="selectedInd === i"></app-product-card>                        
+                </div>
+            </div>
+        
+            <div class="product-details-wrapper" *ngIf="selectedInd>=0">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </ng-container>
 </main>
 
 <footer>
-    <app-pagination *ngIf="paginator" [paginator]="paginator" (setPage)="setPage($event)"></app-pagination>
+    <app-pagination></app-pagination>
 </footer>

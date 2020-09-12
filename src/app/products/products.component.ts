@@ -1,91 +1,49 @@
-import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { NavigationExtras, Router } from '@angular/router';
 import { Product } from '../models/product';
-import { ProductService } from '../product.service';
-import { Paginator } from '../models/paginator';
+import { ProductService, productsOnPageSelect$ } from '../product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {  
-  productsAll: Product[];
-  products: Product[];
-  filteredProducts: Product[];  
-  productSubscription: Subscription;
-  selectedId: number;
- 
-  paginator: Paginator;
-  productsCount = 0;  
+  values$: Observable<any>
+  productsOnPage$: Observable<Product[]>
+  selectedInd = 0
 
-  constructor(private productService: ProductService, private router: Router) {    
+  constructor(private productService: ProductService, private router: Router) {
   }
 
   ngOnInit() {
-     this.productSubscription = this.populateProducts();
+    this.productsOnPage$ = productsOnPageSelect$(this.productService.state$) 
+    this.populateProducts()
   }
 
-  sort(sortBy: string){
-    this.filteredProducts.sort((item1, item2) => {
-      if (isNaN(Number(item1[sortBy]))) {
-        return item1[sortBy].localeCompare(item2[sortBy]);
-      }
-      return item1[sortBy] - item2[sortBy];
-    })   
-
-    this.setPage(this.paginator);    
+  selectProduct(ind: number){
+    this.selectedInd = ind
   }
 
-  filter(query: string){    
-    this.filteredProducts = (query) ? 
-      this.productsAll.filter(p => p.name.toLowerCase().includes(query.toLowerCase()) || 
-      p.description.toLowerCase().includes(query.toLowerCase())) :
-      this.productsAll;
-    
-    this.productsCount = this.filteredProducts.length;    
-       
-    this.setPage(this.paginator)
+  populateProducts() {
+    this.values$ = forkJoin(
+      this.productService.getAll()
+    ).pipe(
+      map(([listState]) => {        
+        if(listState.productsOnPage.length > 0) {
+          setTimeout(() => {      
+            this.router.navigateByUrl(`/products/details/${listState.productsOnPage[0].id}`)
+          })
+        }
+        return { listState }
+      })
+    );
   }
 
-  setPage(page: Paginator){ 
-    this.products = this.filteredProducts.slice(page.start, page.end); 
-    this.selectedId = 0;   
-  }
-
-  selectProduct(id: number){
-    this.selectedId = id;
-  }
-
-  initPaginator(){
-    this.paginator = new Paginator();     
-    this.paginator.pageSize = 5; 
-    this.paginator.currentPage = 1;
-    this.paginator.start = 0;
-    this.paginator.itemsCount = this.productsCount;
-    this.paginator.end = (this.productsCount < this.paginator.pageSize && this.productsCount > 0) ?
-      this.productsCount : this.paginator.pageSize;    
-  }
-
-  populateProducts(): Subscription{
-    return this.productService.getAll()
-    .pipe(
-      map(products =>
-        {          
-          this.productsAll = products;
-          this.filteredProducts = products;
-          this.productsCount = this.productsAll.length;
-          
-          this.initPaginator();
-          this.setPage(this.paginator);
-        }        
-        )
-    ).subscribe();  
-  }
-
-  ngOnDestroy(){
-    this.productSubscription.unsubscribe();
+  trackByFn(index, item) {
+    return item.id;
   }
 }

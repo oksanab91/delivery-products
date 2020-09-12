@@ -1,15 +1,18 @@
 @import '../sass/theme-main';
 
+
 .filter-wrapper{
     display: grid;
     grid-template-columns: 60% 40%;
-    padding: 0.5rem 2rem;  
+    padding: 2rem;    
+    background-color: theme-color(background, base);      
 }
 
 .form-inline{
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;  
+    display: inline-flex;
+    flex-flow: row;
+    align-items: center;
+    border: none; 
 }
 
 .filter{
@@ -17,30 +20,46 @@
   }
   
   .sort{
+    flex-direction: row;
     margin-left: auto;
     padding-right: 0.5rem;
+    font-size: 1rem;    
     label {
-      padding: 0 0.6rem 0 0
+      color: theme-color(font-color, base);
+      padding: 0 0.6rem
     }
 
-    form{
-      @include theme-border-font;      
-    }
-  
-    select{
+    form{      
       font-size: 1rem;
-      width: 216px;  
+      font-family: theme-font();
+      color: theme-color(font-color, base);
+      background-color: theme-color(background, light);
+      padding: .4rem 0;      
+      min-width: 150px;    
+
+      .sortSelect{      
+        outline: none;
+        border: none;
+        font-size: 1rem;
+        width: 100%;     
+        padding-inline-start: 1.1rem;
+      }
     }
   }
   
   .search-form{
-    @include theme-border-font;
-    
-    border-radius: 0.8rem;
+    font-size: 1rem;
+    font-family: theme-font();
+    color: theme-color(font-color, base);
+    background-color: theme-color(background, light);
+    flex: 0 0 40%;
+    max-width: 40%;
+    border-radius: 0;
     margin-left: $theme-basic-margin;
-    padding: 0.2rem;
+    padding: .4rem;
   
-    input{      
+    input{
+      outline: none;      
       font-size: 1rem;
       bottom: 0;      
       left: 0;
@@ -51,19 +70,15 @@
     }
   }
 
-  @media screen and (max-width: 1200px) {  
-    .form-inline {
-      flex-flow: unset;
-      select {
-        width: 9rem;
-      }
-      .sort{
-        padding-left: 0.5rem;
-      }
-    }  
+  a{
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
   }
   
-  @media (max-width: 800px) {
+  @media (max-width: 800px) {  
     .filter-wrapper{
       display: grid;
       grid-template-columns: 1fr;    
@@ -71,44 +86,48 @@
       text-align: center;
       align-items: center;
       margin: 0;
-      padding: 0; 
-    }
-  
-    .form-inline {
-      flex-direction: column;
-      align-items: stretch;
-      width: 100%;
+      padding: 1rem;
       
-      input {
-        margin: 0.3rem 0;
+      .form-inline {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
       }
-  
       .sort{
-        padding: 0;
+        flex-direction: row;
       }
     }
   
     .search-form {
       margin: 0;
-      border-width: $theme-border-width-mobile;
+      flex: auto;
+      max-width: 100%;
     }
   
     .sortForm {
-      width:100%;
+      width:100%;     
     }
   
     .sort {
+      padding: 0;
+      padding-top: 1rem;
+      flex-direction: row;
+
+      label {
+        margin: auto;
+        margin-right: 0;
+        padding: 0;
+      }
+
       form{
-        border-width: $theme-border-width-mobile;
+        width: 80%;    
+        margin-left: auto;
+
+        .sortSelect{
+          width: -webkit-fill-available;
+        }
       }
-      select{
-        width: -webkit-fill-available;
-        padding-bottom: 0.3rem;
-      }
-  
-      .form-inline{
-        border-width: $theme-border-width-mobile;
-      }
+   
     }  
     
   }

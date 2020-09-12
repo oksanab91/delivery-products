@@ -1,0 +1,13 @@
+<div class="pagination-wrapper" *ngIf="(paginator$ | async) as paginator">
+    <ul class="pagination">
+      <li [ngClass]="{disabled:paginator.currentPage === 1}">
+        <a role="button" (click)="onSetPage(paginator.currentPage - 1)"><span> ❮ Prev Page</span></a>
+      </li>
+
+      <li><label>{{paginator.currentPage}}&nbsp;&nbsp;of&nbsp;&nbsp;{{paginator.pagesCount}}</label></li>
+      
+      <li [ngClass]="{disabled:paginator.currentPage === paginator.pagesCount}">
+        <a role="button" (click)="onSetPage(paginator.currentPage + 1)"><span> Next Page ❯</span></a>
+      </li>
+    </ul>
+</div>
