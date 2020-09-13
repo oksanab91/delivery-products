@@ -2,6 +2,21 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
 
+It is a responsive web application that shows its user a list of products.
+
+User can add, edit and delete products. Also, the products can be filtered and sorted.
+
+
+#
+
+
+## Main libraries and techniques:
+
+- Styling elements without external libraries 
+- Storing data into client side browser using HTML5 [localStorage](https://javascript.info/localstorage)
+- [RxJs](https://angular.io/guide/rx-library) to get and manage data
+- Simple state management with only Services and RxJS
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
