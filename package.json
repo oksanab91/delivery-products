@@ -28,7 +28,7 @@
     "https-proxy-agent": "^2.2.3",
     "handlebars": "^4.5.3",
     "serialize-javascript": "^3.1.0",
-    "elliptic": "^6.5.3",
+    "elliptic": "^6.5.4",
     "tree-kill": "^1.2.2"
   },
   "devDependencies": {
@@ -55,7 +55,7 @@
     "https-proxy-agent": "^2.2.3",
     "handlebars": "^4.5.3",
     "serialize-javascript": "^3.1.0",
-    "elliptic": "^6.5.3",
+    "elliptic": "^6.5.4",
     "tree-kill": "^1.2.2"
   }
 }
